@@ -1,16 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&display=swap");
 
-/* Global Resets */
-*,
-*::after,
-*::before {
+*, *::after, *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html,
-body {
+html, body {
   height: 100%;
   min-height: 100vh;
 }
@@ -32,16 +28,6 @@ ul {
 .main {
   max-width: 75rem;
   padding: 3em 1.5em;
-}
-
-/* Added for a rounded container */
-.main {
-  border-radius: 15px;
-}
-
-/* Added a background color for the main container */
-.main {
-  background-color: #2b2b2b;
 }
 
 .main__heading {
@@ -77,37 +63,16 @@ ul {
   border-radius: 15px;
 }
 
-/* Added for a hover effect */
-.card {
-  transition: transform 0.3s;
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
 }
 
-.card:hover {
-  transform: translateY(-10px); /* Lift effect on hover */
-}
-
-.card:nth-child(1) {
-  --hue: 165;
-  --saturation: 82.26%;
-  --lightness: 51.37%;
-}
-
-.card:nth-child(2) {
-  --hue: 291.34;
-  --saturation: 95.9%;
-  --lightness: 61.76%;
-}
-
-.card:nth-child(3) {
-  --hue: 338.69;
-  --saturation: 100%;
-  --lightness: 48.04%;
-}
-
-.card:nth-child(4) {
-  --hue: 240;
-  --saturation: 50%;
-  --lightness: 50%;
+.logo {
+  max-width: 150px;  /* Adjusted the logo size here */
+  height: auto;
 }
 
 .card__bullets {
@@ -121,22 +86,16 @@ ul {
   margin-right: 1ch;
 }
 
-/* Adjusted the color to match the card text */
-.card__bullets li::before {
-  color: #eceff1;
-}
-
-.card__heading,
-.card__price {
+.card__heading {
   font-size: 1.75em;
   font-weight: 600;
   text-align: center;
 }
 
-/* Added for better text readability */
-.card__heading,
 .card__price {
-  letter-spacing: 1px;
+  font-size: 1.75em;
+  font-weight: 700;
+  text-align: center;
 }
 
 .flow > * + * {
@@ -157,32 +116,14 @@ ul {
   font-weight: 600;
 }
 
-/* Added for a hover effect */
-.cta {
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.cta:hover {
-  background-color: #1a1a1a; /* Darken the button on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
 .overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
   user-select: none;
   opacity: var(--opacity, 0);
-  -webkit-mask: radial-gradient(
-    25rem 25rem at var(--x) var(--y),
-    #000 1%,
-    transparent 50%
-  );
-  mask: radial-gradient(
-    25rem 25rem at var(--x) var(--y),
-    #000 1%,
-    transparent 50%
-  );
+  -webkit-mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
+  mask: radial-gradient(25rem 25rem at var(--x) var(--y), #000 1%, transparent 50%);
   transition: 400ms mask ease;
   will-change: mask;
 }
