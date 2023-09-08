@@ -27,20 +27,26 @@ const observer = new ResizeObserver((entries) => {
     let width = entry.borderBoxSize[0].inlineSize;
     let height = entry.borderBoxSize[0].blockSize;
 
-    if (cardIndex >= 0) {
-      overlay.children[cardIndex].style.width = `${width}px`;
-      overlay.children[cardIndex].style.height = `${height}px`;
-    }
+    if (cardIndex === -1) return;
+
+    const overlayCard = overlay.children[cardIndex];
+    overlayCard.style.width = `${width}px`;
+    overlayCard.style.height = `${height}px`;
   });
 });
 
-const initOverlayCard = (cardEl) => {
-  const overlayCard = document.createElement("div");
-  overlayCard.classList.add("card");
-  createOverlayCta(overlayCard, cardEl.lastElementChild);
-  overlay.append(overlayCard);
-  observer.observe(cardEl);
-};
+cards.forEach((card) => {
+  const overlayCard = card.cloneNode(true);
+  overlayCard.setAttribute("aria-hidden", true);
+  overlay.appendChild(overlayCard);
 
-cards.forEach(initOverlayCard);
-document.body.addEventListener("pointermove", applyOverlayMask);
+  const ctaEl = card.querySelector(".cta");
+  createOverlayCta(overlayCard, ctaEl);
+
+  observer.observe(card);
+});
+
+cardsContainer.addEventListener("mousemove", applyOverlayMask);
+cardsContainer.addEventListener("mouseleave", () => {
+  overlay.style = "--opacity: 0;";
+});
